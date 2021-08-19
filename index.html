@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test JS</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="row">
+                <div class="col"><button id="minus" class="btn btn-primary">-</button></div>
+                <div class="col"><input id="qty" class="form-control" type="text" value="1"></div>
+                <div class="col"><button id="plus" class="btn btn-primary">+</button></div>
+                <div class="col"><h5>Unit Price: $<span id="price">5</span></h5></div>
+                <div class="col"><h5>Total: $<span id="total">00</span></h5></div>
+            </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function subTotal(productQuantity){
+            const unitPrice = document.getElementById('price').innerText;           
+            const totalQantity = productQuantity;      
+            let total = parseFloat(totalQantity) * parseFloat(unitPrice);        
+            const showTotal = document.getElementById('total');       
+            showTotal.innerText = total; 
+        }
+        document.getElementById('plus').addEventListener('click',function(){
+            const quantity = document.getElementById('qty');
+            let increase = quantity.value;
+            increase = parseInt(increase) + 1;
+            quantity.value = increase;  
+            subTotal(quantity.value);
+        })   
+        document.getElementById('minus').addEventListener('click', function(){
+            const quantity = document.getElementById('qty');
+            let quantityValue = quantity.value;
+            if (quantityValue>1){
+                quantityValue = parseFloat(quantityValue) -1;
+                quantity.value = quantityValue;
+                subTotal(quantity.value);
+            }          
+        })
+        
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+</body>
+</html>
